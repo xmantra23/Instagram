@@ -15,6 +15,8 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -31,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private EditText etDescription;
-    private Button btnCaptureImage;
+    private Button btnCaptureImage,btnLogout;
     private ImageView ivPostImage;
     private Button btnSubmit;
     private File photoFile;
     public String photoFileName = "photo.jpg";
+    private TextView txtUserName;
+    private ProgressBar pbLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,15 @@ public class MainActivity extends AppCompatActivity {
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
+        btnLogout = findViewById(R.id.btnLogout);
+        txtUserName = findViewById(R.id.txtUserName);
+        pbLoading = findViewById(R.id.pbLoading);
 
         //queryPosts();
-
+        ParseUser user = ParseUser.getCurrentUser();
+        txtUserName.setText("Logged in as @"+user.getUsername());
         btnSubmit.setOnClickListener(v->{
+            pbLoading.setVisibility(ProgressBar.VISIBLE);
             String description = etDescription.getText().toString();
             if(description.isEmpty()){
                 Toast.makeText(MainActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
@@ -65,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
 
         btnCaptureImage.setOnClickListener(v->{
             launchCamera();
+        });
+
+        btnLogout.setOnClickListener(v->{
+            ParseUser.logOut();
+            ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+            Intent i = new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(i);
+            finish();
         });
         
     }
@@ -131,10 +148,12 @@ public class MainActivity extends AppCompatActivity {
                 if(e != null){
                     Log.e(TAG,"Error while saving",e);
                     Toast.makeText(MainActivity.this,"Error while saving!",Toast.LENGTH_SHORT).show();
+                    pbLoading.setVisibility(ProgressBar.INVISIBLE);
                 }
                 Log.i(TAG,"Post save was successful!!");
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
+                pbLoading.setVisibility(ProgressBar.INVISIBLE);
             }
         });
     }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Instagram</string>
+    <string name="signup_text"><u>No Account? Signup here.</u></string>
 </resources>
