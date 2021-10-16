@@ -6,6 +6,11 @@
         <entry key="..\:/CodePath/Instagram/app/src/main/res/layout/activity_login.xml" value="0.28020833333333334" />
         <entry key="..\:/CodePath/Instagram/app/src/main/res/layout/activity_main.xml" value="0.28020833333333334" />
         <entry key="..\:/CodePath/Instagram/app/src/main/res/layout/activity_sign_up.xml" value="0.2857142857142857" />
+        <entry key="..\:/CodePath/Instagram/app/src/main/res/layout/fragment_compose.xml" value="0.13645833333333332" />
+        <entry key="..\:/CodePath/Instagram/app/src/main/res/layout/fragment_posts.xml" value="0.21041666666666667" />
+        <entry key="..\:/CodePath/Instagram/app/src/main/res/layout/item_post.xml" value="0.2857142857142857" />
+        <entry key="..\:/CodePath/Instagram/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.28020833333333334" />
+        <entry key="..\:/CodePath/Instagram/app/src/main/res/menu/menu_top.xml" value="0.28020833333333334" />
         <entry key="..\:/CodePath/Instagram/app/src/main/res/xml/fileprovider.xml" value="0.14739583333333334" />
       </map>
     </option>
